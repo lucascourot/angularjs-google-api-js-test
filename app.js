@@ -4,7 +4,7 @@ angular.module('angularApp', [])
     
     var deferred = $q.defer();
 
-    window.handleClientLoad = function handleClientLoad() {
+    $window.handleClientLoad = function handleClientLoad() {
       deferred.resolve();
     }
 
@@ -23,7 +23,3 @@ angular.module('angularApp', [])
       $scope.loaded = true;
     });
   });
-
-  window.handleClientLoad2 = function handleClientLoad2() {
-    deferred.resolve();
-  }
