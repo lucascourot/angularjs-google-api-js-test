@@ -1,11 +1,13 @@
 angular.module('angularApp', [])
   
   .factory('GoogleClient', function($window, $q) {
-    
     var deferred = $q.defer();
 
-    window.handleClientLoad = function handleClientLoad() {
-      deferred.resolve();
+    $window.handleClientLoad = function handleClientLoad() {
+      // Simulate 1s loading delay
+      setTimeout(function() {
+        deferred.resolve();
+      }, 1000);
     }
 
     return {
@@ -16,14 +18,10 @@ angular.module('angularApp', [])
   })
 
   .controller('MainController', function($scope, GoogleClient) {
-    $scope.title  = 'Test';
+    $scope.title  = 'Loading...';
     $scope.loaded = false;
 
     GoogleClient.get().then(function loaded() {
       $scope.loaded = true;
     });
   });
-
-  window.handleClientLoad2 = function handleClientLoad2() {
-    deferred.resolve();
-  }
